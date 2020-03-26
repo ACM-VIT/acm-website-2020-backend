@@ -19,13 +19,24 @@ const app = express();
 require('dotenv').config();
 
 // Middlewares
-app.use(require('./middlewares/notFound'));
-app.use(require('./middlewares/error'));
+app.use((req, res, next) => {
+  const error = new Error(`'${req.originalUrl}' - Not found`);
+  res.status(404);
+  next(error);
+});
+
+app.use((error, req, res, next) => {
+  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+  res.status(statusCode).json({
+    error: error.message,
+  });
+  next();
+});
 
 // Routes
 const mail = require('./routes/mail');
 
-app.use('/api/mail/', mail);
+app.use('/api/mail', mail);
 
 const port = process.env.PORT;
 app.listen(port, () => console.log(`Server online on port ${port}`));
