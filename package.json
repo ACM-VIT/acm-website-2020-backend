@@ -2,10 +2,7 @@
   "name": "acm-website-2020-backend",
   "version": "1.0.0",
   "description": "Nodemailer API",
-  "main": "App.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ACM-VIT/acm-website-2020-backend.git"
@@ -28,6 +25,15 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0",
+    "nodemon": "^2.0.2",
     "prettier": "^2.0.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.1.1",
+    "helmet": "^3.22.0",
+    "morgan": "^1.10.0"
   }
 }
