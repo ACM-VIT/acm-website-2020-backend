@@ -1,6 +1,5 @@
-const sendMessage = (req, res, next) => {
-  res.send('Yo');
-  next();
+const sendMail = (req, res) => {
+  res.send('Hey');
 };
 
-module.exports = { sendMessage };
+module.exports = { sendMail };

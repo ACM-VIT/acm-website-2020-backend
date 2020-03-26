@@ -1,8 +1,7 @@
-// eslint-disable-next-line no-shadow
+/* eslint-disable no-shadow */
 const error = (error, req, res, next) => {
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
-  res.status(statusCode);
-  res.json({
+  res.status(statusCode).json({
     error: error.message,
   });
   next();
