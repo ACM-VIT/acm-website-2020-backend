@@ -18,6 +18,9 @@ const app = express();
 // Environment variables
 require('dotenv').config();
 
+// Routes
+const mail = require('./routes/mail');
+
 // Middlewares
 app.use((req, res, next) => {
   const error = new Error(`'${req.originalUrl}' - Not found`);
@@ -32,9 +35,6 @@ app.use((error, req, res, next) => {
   });
   next();
 });
-
-// Routes
-const mail = require('./routes/mail');
 
 app.use('/api/mail', mail);
 
