@@ -22,19 +22,9 @@ require('dotenv').config();
 const mail = require('./routes/mail');
 
 // Middlewares
-app.use((req, res, next) => {
-  const error = new Error(`'${req.originalUrl}' - Not found`);
-  res.status(404);
-  next(error);
-});
+app.use(require('./middlewares/notFound'));
 
-app.use((error, req, res, next) => {
-  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
-  res.status(statusCode).json({
-    error: error.message,
-  });
-  next();
-});
+app.use(require('./middlewares/error'));
 
 app.use('/api/mail', mail);
 
