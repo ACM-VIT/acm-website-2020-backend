@@ -1,6 +1,5 @@
-const sendMessage = (req, res, next) => {
-  res.send('Yo');
-  next();
+const sendMail = (req, res) => {
+  res.json({ success: true, msg: "mail content goes here" });
 };
 
-module.exports = { sendMessage };
+module.exports = { sendMail };

@@ -1,10 +1,6 @@
-const express = require('express');
+const router = require("express").Router();
+const mail = require("../controllers/mail");
 
-const router = express.Router();
-
-// Controllers
-const controller = require('../controllers/mail');
-
-router.get('/send', controller.sendMessage);
+router.get("/sendMail", mail.sendMail);
 
 module.exports = router;

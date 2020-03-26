@@ -1,27 +1,15 @@
-const express = require('express');
-
-// Basic security
-// const helmet = require('helmet');
-// const rateLimit = require('express-rate-limit');
-// const morgan = require('morgan');
-// const cors = require('cors');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
 
 const app = express();
+const port = process.env.PORT || 5000;
+const mail = require("./routes/mail");
 
-// Security setup
-// app.use(helmet());
-// const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 100 });
-// app.use(limiter);
-// app.use(morgan('common'));
-// app.use(cors({ origin: process.env.CORS_ORIGIN }));
+app.use(cors());
 
-// Environment variables
-require('dotenv').config();
+app.use("/api", mail);
 
-// Routes
-const mail = require('./routes/mail');
-
-// Middlewares
 app.use((req, res, next) => {
   const error = new Error(`'${req.originalUrl}' - Not found`);
   res.status(404);
@@ -31,12 +19,9 @@ app.use((req, res, next) => {
 app.use((error, req, res, next) => {
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
   res.status(statusCode).json({
-    error: error.message,
+    error: error.message
   });
   next();
 });
 
-app.use('/api/mail', mail);
-
-const port = process.env.PORT;
 app.listen(port, () => console.log(`Server online on port ${port}`));
