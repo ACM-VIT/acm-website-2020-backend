@@ -1,5 +1,9 @@
 const nodemailer = require('nodemailer');
 
+const landing = (req, res) => {
+  res.send('Welcome to the backend!');
+};
+
 const sendMail = async (req, res) => {
   // Email markup
   const emailMarkup = ` <div
@@ -163,4 +167,4 @@ const sendMail = async (req, res) => {
   res.send({ success: true });
 };
 
-module.exports = { sendMail };
+module.exports = { landing, sendMail };
