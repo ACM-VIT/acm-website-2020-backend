@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 const app = express();
+app.use(express.json({ extended: false }));
 
 // Environment Variables
 require('dotenv').config();
@@ -26,5 +27,4 @@ app.use(require('./middlewares/notFound'));
 app.use(require('./middlewares/error'));
 
 const port = process.env.PORT;
-
 app.listen(port, () => console.log(`Server online on port ${port}`));
