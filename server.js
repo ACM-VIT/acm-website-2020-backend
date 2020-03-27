@@ -26,5 +26,5 @@ app.use(require('./middlewares/notFound'));
 
 app.use(require('./middlewares/error'));
 
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server online on port ${port}`));
