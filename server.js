@@ -11,7 +11,7 @@ app.use(express.json({ extended: false }));
 require('dotenv').config();
 
 // Basic Security
-const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 100 });
+const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 15 });
 app.use(morgan('common'));
 app.use(helmet());
 app.use(limiter);
