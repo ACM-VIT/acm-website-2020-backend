@@ -8,7 +8,7 @@ const landing = (req, res) => {
 const sendMail = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
+    return res.status(422).json({ success: false, errors: errors.array() });
   }
 
   // Email markup
@@ -172,7 +172,7 @@ const sendMail = async (req, res) => {
   console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
   return res.json({
     success: true,
-    message: 'Message sent. Please wait for us to get back to you!',
+    msg: 'Message sent. Please wait for us to get back to you!',
   });
 };
 
