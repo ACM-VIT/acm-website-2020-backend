@@ -14,5 +14,5 @@
   "parserOptions": {
     "ecmaVersion": 2018
   },
-  "rules": { "no-console": "off", "no-unused-vars": "off" }
+  "rules": { "no-console": "off", "no-unused-vars": "off", "no-shadow": "off" }
 }

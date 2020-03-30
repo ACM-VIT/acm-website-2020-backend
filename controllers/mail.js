@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator');
 const nodemailer = require('nodemailer');
 
 const landing = (req, res) => {
@@ -5,6 +6,11 @@ const landing = (req, res) => {
 };
 
 const sendMail = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+
   // Email markup
   const emailMarkup = ` <div
       style="
@@ -158,13 +164,16 @@ const sendMail = async (req, res) => {
   const info = await transporter.sendMail({
     from: `"Mailman" <${process.env.EMAIL}>`,
     to: 'shreyaskhn@gmail.com',
-    subject: 'Message from visitor', // Subject line
+    subject: 'Message from a visitor', // Subject line
     text: 'Message received from a visitor of the website.', // Plain text body
     html: emailMarkup, // Html body
   });
   console.log('Message sent: %s', info.messageId);
   console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-  res.send({ success: true });
+  return res.json({
+    success: true,
+    message: 'Message sent. Please wait for us to get back to you!',
+  });
 };
 
 module.exports = { landing, sendMail };

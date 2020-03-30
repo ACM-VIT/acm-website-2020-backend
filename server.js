@@ -1,6 +1,6 @@
+const rateLimit = require('express-rate-limit');
 const express = require('express');
 const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
 const morgan = require('morgan');
 const cors = require('cors');
 
@@ -11,10 +11,10 @@ app.use(express.json({ extended: false }));
 require('dotenv').config();
 
 // Basic Security
-app.use(helmet());
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 100 });
-app.use(limiter);
 app.use(morgan('common'));
+app.use(helmet());
+app.use(limiter);
 app.use(cors());
 
 const mail = require('./routes/mail');
