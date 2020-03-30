@@ -12,10 +12,10 @@ require('dotenv').config();
 
 // Basic Security
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 5 });
-app.use(morgan('common'));
-app.use(helmet());
-app.use(limiter);
 app.use(cors());
+app.use(helmet());
+app.use(morgan('common'));
+app.use(limiter);
 
 const mail = require('./routes/mail');
 
